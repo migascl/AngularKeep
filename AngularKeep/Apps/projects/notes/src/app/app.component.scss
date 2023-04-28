@@ -1,0 +1,25 @@
+.main-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.body-container {
+  flex-grow: 1;
+}
+
+.new-note-button {
+    position: fixed !important;
+    z-index: 1000;
+    margin: 5rem;
+    right: 0;
+    bottom: 0;
+  }
+
+.fullheight-center {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

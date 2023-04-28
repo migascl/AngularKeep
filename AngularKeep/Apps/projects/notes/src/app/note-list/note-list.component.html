@@ -1,0 +1,27 @@
+<div class="note-list-container">
+  <mat-card *ngFor="let note of notes" class="note-list-item" matRipple>
+    <div (click)="openNote(note.noteId)" aria-label="Open note">
+      <mat-card-header>
+        <mat-card-title>{{ note.title | titlecase }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <textarea
+          cdkAutosizeMaxRows="6"
+          cdkAutosizeMinRows="1"
+          cdkTextareaAutosize
+          class="mat-body note-item-content"
+          readonly
+          >{{ note.content }}</textarea
+        >
+      </mat-card-content>
+    </div>
+    <mat-card-actions align="end">
+      <button
+        (click)="deleteNote(note.noteId)"
+        aria-label="Delete note"
+        mat-icon-button>
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

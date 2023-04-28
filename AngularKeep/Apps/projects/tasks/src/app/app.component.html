@@ -1,0 +1,59 @@
+<!-- Infinite Scrolling -->
+<div class="main-container">
+  <div *ngIf="!loading; else elseLoading" class="body-container">
+    <div
+      *ngIf="tasks!.length > 0; else elseEmpty"
+      class="task-list"
+      infinite-scroll
+      [infiniteScrollDistance]="2"
+      [infiniteScrollThrottle]="1000"
+      (scrolled)="onScroll()">
+      <mat-card *ngFor="let item of tasks">
+        <mat-card-content>{{ item.name }}</mat-card-content>
+      </mat-card>
+    </div>
+    <!--
+    <mat-card class="new-task">
+      <mat-card-content>New note...</mat-card-content>
+    </mat-card>
+    -->
+    <ng-template #elseEmpty>
+      <div class="fullheight-center">There are no tasks.</div>
+    </ng-template>
+  </div>
+  <ng-template #elseLoading>
+    <div class="fullheight-center">
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-template>
+  <app-app-footer></app-app-footer>
+</div>
+<!-- Virtual Scrolling -->
+<!--
+<div class="main-container">
+  <div *ngIf="!loading; else elseLoading" class="body-container">
+    <div
+      *ngIf="tasks!.length > 0; else elseEmpty"
+      class="task-list"
+      cdkVirtualScrollingElement>
+      <cdk-virtual-scroll-viewport itemSize="task.length">
+        <mat-card *cdkVirtualFor="let item of tasks">
+          <mat-card-content>{{ item.name }}</mat-card-content>
+        </mat-card>
+      </cdk-virtual-scroll-viewport>
+    </div>
+    <mat-card class="new-note">
+      <mat-card-content>New note...</mat-card-content>
+    </mat-card>
+    <ng-template #elseEmpty>
+      <div class="fullheight-center">There are no tasks.</div>
+    </ng-template>
+  </div>
+  <ng-template #elseLoading>
+    <div class="fullheight-center">
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-template>
+  <app-app-footer></app-app-footer>
+</div>
+-->

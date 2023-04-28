@@ -1,0 +1,52 @@
+<form [formGroup]="form">
+  <mat-card *ngIf="!loading">
+    <mat-card-header>
+      <mat-card-title>
+        <input
+          tabindex="-1"
+          class="mat-headline-6 note-field"
+          formControlName="title"
+          placeholder="Title..." />
+      </mat-card-title>
+      <mat-card-subtitle *ngIf="note">{{
+        note.date | date : 'short'
+      }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-divider class="note-divider"></mat-divider>
+      <textarea
+        cdkAutosizeMaxRows="24"
+        cdkAutosizeMinRows="1"
+        cdkTextareaAutosize
+        class="mat-body note-content note-field"
+        formControlName="content"
+        placeholder="Your note..."></textarea>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button
+        (click)="deleteNote()"
+        *ngIf="note"
+        [disabled]="loading"
+        aria-label="Delete note"
+        mat-icon-button>
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button
+        (click)="submitNote()"
+        [disabled]="!form.valid || loading"
+        aria-label="Submit note"
+        color="primary"
+        mat-button>
+        Save
+      </button>
+      <button
+        (click)="closeNote()"
+        [disabled]="loading"
+        aria-label="Close note dialog"
+        color="primary"
+        mat-button>
+        Close
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

@@ -1,0 +1,29 @@
+<div class="main-container">
+  <div *ngIf="!loading; else elseLoading" class="body-container">
+    <button
+      *ngIf="notes"
+      class="new-note-button"
+      routerLink=""
+      [queryParams]="{ note: 'new' }"
+      color="accent"
+      aria-label="Create note"
+      extended
+      mat-fab>
+      <mat-icon>add</mat-icon>
+      New Note
+    </button>
+    <app-note-list
+      *ngIf="notes!.length > 0; else elseEmpty"
+      [notes]="notes"
+      (deleteNoteCallback)="deleteNote($event)"></app-note-list>
+    <ng-template #elseEmpty>
+      <div class="fullheight-center">There are no notes.</div>
+    </ng-template>
+  </div>
+  <ng-template #elseLoading>
+    <div class="fullheight-center">
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-template>
+  <app-app-footer></app-app-footer>
+</div>
